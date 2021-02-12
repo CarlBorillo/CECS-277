@@ -1,0 +1,12 @@
+package Lab13P2;
+
+public class Part2Main {
+    public static void main(String[] args)
+    {
+        PizzaInt p1 = new Pepperoni(new Pizza());
+        PizzaInt p2 = new Sausage(new Pepperoni(new Pizza()));
+        PizzaInt p3 = new ExtraCheese(new Pepperoni(new Sausage(new Pizza()))); p1.makePizza();
+        p2.makePizza();
+        p3.makePizza();
+    }
+}

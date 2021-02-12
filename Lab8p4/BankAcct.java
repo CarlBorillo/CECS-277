@@ -1,0 +1,71 @@
+package Lab8p4;
+
+public class BankAcct {
+    private double balance;
+
+    /**
+     Constructs a bank account with a zero balance
+     */
+    public BankAcct()
+    {
+        balance = 0;
+    }
+
+    /**
+     Constructs a bank account with a given balance
+     @param initialBalance the initial balance
+      * @throws NegativeBalanceException
+     */
+    public BankAcct(double initialBalance) throws NegativeBalanceException
+    {
+        if (initialBalance < 0)
+            throw new NegativeBalanceException(
+                    "Cannot create account: " + initialBalance + " is less than zero");
+
+        balance = initialBalance;
+    }
+
+    /**
+     Deposits money into the bank account.
+     @param amount the amount to deposit
+      * @throws NegativeAmountException
+     */
+    public void deposit(double amount) throws NegativeAmountException
+    {
+        if (amount < 0)
+            throw new NegativeAmountException(
+                    "Deposit of " + amount + " is less than zero");
+        double newBalance = balance + amount;
+        balance = newBalance;
+    }
+
+    /**
+     Withdraws money from the bank account.
+     @param amount the amount to withdraw
+      * @throws NegativeAmountException
+     */
+    public void withdraw(double amount) throws NegativeAmountException, InsufficientFundsException
+    {
+        if (amount < 0)
+            throw new NegativeAmountException(
+                    "Withdrawal of " + amount + " is less than zero");
+
+        if (amount > balance)
+            throw new InsufficientFundsException(
+                    "Withdrawal of " + amount + " exceeds balance of " + balance);
+
+        double newBalance = balance - amount;
+        balance = newBalance;
+    }
+
+    /**
+     Gets the current balance of the bank account.
+     @return the current balance
+     */
+    public double getBalance()
+    {
+
+        return balance;
+    }
+}
+
